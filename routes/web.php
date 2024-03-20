@@ -24,3 +24,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 route::get('disciplinas',
         [\App\Http\Controllers\DisciplinasController::class,'index'])
 ->name('disciplina');
+
+route::get('editar',
+[App\Http\Controllers\DisciplinasController::class,'edit'])
+->name('editar');
+
+route::put('atualizar',
+[App\Http\Controllers\DisciplinasController::class,'update'])
+->name('atualizar');

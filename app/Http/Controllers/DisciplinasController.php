@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\disciplinas;
 use App\Http\Requests\StoredisciplinasRequest;
@@ -44,9 +45,11 @@ class DisciplinasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(disciplinas $disciplinas)
+    public function edit(Request $request)
     {
-        //
+        $disciplina = \App\Models\disciplinas::find($request->id);
+
+        return view('form-disciplina',['disciplina'=>$disciplina]);
     }
 
     /**
@@ -54,7 +57,8 @@ class DisciplinasController extends Controller
      */
     public function update(UpdatedisciplinasRequest $request, disciplinas $disciplinas)
     {
-        //
+     
+        dd($request);
     }
 
     /**
