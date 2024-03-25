@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\disciplinas;
 use App\Http\Requests\StoredisciplinasRequest;
 use App\Http\Requests\UpdatedisciplinasRequest;
+use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Stmt\Return_;
 
 class DisciplinasController extends Controller
 {
@@ -23,15 +25,18 @@ class DisciplinasController extends Controller
      */
     public function create()
     {
-        //
+        return view('form-incluir-disciplina');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoredisciplinasRequest $request)
+    public function store(Request $request)
     {
-        //
+        $disciplina=new \App\Models\disciplinas;
+        $disciplina->create(['disciplina'=>$request ->disciplina]);
+
+        return Redirect()->route('disciplinas');
     }
 
     /**
@@ -55,17 +60,26 @@ class DisciplinasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatedisciplinasRequest $request, disciplinas $disciplinas)
+    public function update(Request $request, disciplinas $disciplinas)
     {
      
-        dd($request);
+        $atualizar = \App\Models\disciplinas::find($request->id);
+        $atualizar -> disciplina = $request->disciplina;
+
+        $atualizar->save();
+
+        return Redirect()->route('disciplinas'); 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(disciplinas $disciplinas)
+    public function destroy(int $id)
+
+    
     {
-        //
+        \App\Models\disciplinas::find($id)->delete();
+        return Redirect()->route('disciplinas'); 
+
     }
 }

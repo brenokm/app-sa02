@@ -17,13 +17,12 @@ Route::get('/', function () {
     return view('Inicio');
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 route::get('disciplinas',
         [\App\Http\Controllers\DisciplinasController::class,'index'])
-->name('disciplina');
+->name('disciplinas');
 
 route::get('editar',
 [App\Http\Controllers\DisciplinasController::class,'edit'])
@@ -32,3 +31,23 @@ route::get('editar',
 route::put('atualizar',
 [App\Http\Controllers\DisciplinasController::class,'update'])
 ->name('atualizar');
+
+route::post('disciplina/incluir',
+[App\Http\Controllers\DisciplinasController::class,'store'])
+->name('disciplina.incluir');
+
+
+route::get('disciplina/novo',
+[App\Http\Controllers\DisciplinasController::class,'create'])
+->name('disciplina.novo');
+
+
+
+route::get('disciplina/{id}/excluir',
+[App\Http\Controllers\DisciplinasController::class,'destroy'])
+->name('disciplina.excluir');
+
+
+
+Auth::routes();
+

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section("content")
 
+ <a href="{{route('disciplina.novo')}}" class="btn btn-primary">novo</a>
 <table class="table table-hover table-striped"> 
     <thead>
         <tr>
@@ -23,7 +24,7 @@
             <td>
             <a href="{{  route('editar', [ 'id' => $disciplina->id] ) }}"
             class="btn btn-info btn-sm">Editar</a>
-            <a href=""class="btn btn-danger btn-sm">Excluir</a>
+            <a href="{{ route('disciplina.excluir',['id'=> $disciplina->id ])}}"class="btn btn-danger btn-sm">Excluir</a>
             </td>     
         </tr>
 
